@@ -4,8 +4,9 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/react-practice-note/',
   plugins: [
     react(),
-     tailwindcss()
-],
+    tailwindcss(),
+  ],
 })
