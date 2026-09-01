@@ -5,6 +5,7 @@ import { UserProfilePage } from './pages/UserProfilePage'
 import { CustomButtonPage } from './pages/CustomButtonPage'
 import { InputFieldPage } from './pages/InputFieldPage'
 import { DataListPage } from './pages/DataListPage'
+import { TaxCalculatorPage } from './pages/TaxCalculatorPage'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/custom-button" element={<CustomButtonPage />} />
       <Route path="/input-field" element={<InputFieldPage />} />
       <Route path="/data-list" element={<DataListPage />} />
+      <Route path="/tax-calculator" element={<TaxCalculatorPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
