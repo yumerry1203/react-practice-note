@@ -6,6 +6,7 @@ import { CustomButtonPage } from './pages/CustomButtonPage'
 import { InputFieldPage } from './pages/InputFieldPage'
 import { DataListPage } from './pages/DataListPage'
 import { TaxCalculatorPage } from './pages/TaxCalculatorPage'
+import { ZustandCounterPage } from './pages/ZustandCounterPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/input-field" element={<InputFieldPage />} />
       <Route path="/data-list" element={<DataListPage />} />
       <Route path="/tax-calculator" element={<TaxCalculatorPage />} />
+      <Route path="/zustand-counter" element={<ZustandCounterPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

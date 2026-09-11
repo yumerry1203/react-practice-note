@@ -9,6 +9,12 @@ const august28Practices = [
 
 const practiceGroups = [
   {
+    date: '2026.09.11(금)',
+    practices: [
+      { number: '08', icon: '⌂', title: 'Zustand: 필요한 상태만 구독하기', description: '중앙 Store와 셀렉터로 상태 관리하기', path: '/zustand-counter', tone: 'lilac' },
+    ],
+  },
+  {
     date: '2026.09.01(화)',
     practices: [
       { number: '07', icon: '⌁', title: 'TS 마이그레이션 솔루션', description: '타입 규격으로 안전한 데이터 흐름 만들기', path: '/tax-calculator', tone: 'lavender' },
