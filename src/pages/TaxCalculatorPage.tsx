@@ -1,16 +1,11 @@
 import { useReducer } from 'react'
 import { PracticeLayout } from '../components/PracticeLayout'
+import { initialProductState, updatedProductPrice } from '../data/taxCalculatorData'
 import { productReducer } from '../store/productReducer'
-import type { ProductState } from '../type/product'
 import { taxCalculator } from '../utils/taxCalculator'
 
-const initialState: ProductState = {
-  productId: 101,
-  price: 50000,
-}
-
 export function TaxCalculatorPage() {
-  const [state, dispatch] = useReducer(productReducer, initialState)
+  const [state, dispatch] = useReducer(productReducer, initialProductState)
   const trackingCode = taxCalculator(state)
 
   return (
@@ -27,7 +22,7 @@ export function TaxCalculatorPage() {
           <span>🛡️ 보안 세금 엔진 가동 중</span>
           <p>검증된 추적 코드 <strong>{trackingCode}</strong></p>
         </div>
-        <button className="tax-update-button" onClick={() => dispatch({ type: 'UPDATE_PRICE', payload: 65000 })}>
+        <button className="tax-update-button" onClick={() => dispatch({ type: 'UPDATE_PRICE', payload: updatedProductPrice })}>
           가격 업데이트 (계약 준수)
         </button>
       </section>

@@ -1,4 +1,4 @@
-type FetchStatus =
+export type FetchStatus =
   | { state: 'loading' }
   | { state: 'success'; data: string }
   | { state: 'error'; error: Error }

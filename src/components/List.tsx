@@ -1,41 +1,11 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
-const august28Practices = [
-  { number: '01', icon: '◉', title: '프로필 카드 만들기', description: 'Props와 타입으로 나만의 프로필 카드 구성하기', path: '/user-profile', tone: 'lilac' },
-  { number: '02', icon: '✦', title: '상태별 데이터 표시', description: '구별된 공용체로 안전한 UI 상태 다루기', path: '/status-display', tone: 'pink' },
-  { number: '03', icon: '⌘', title: '커스텀 버튼 만들기', description: 'HTML 버튼 속성을 확장해 재사용하기', path: '/custom-button', tone: 'peach' },
-  { number: '04', icon: '↗', title: '이벤트와 스타일 정밀 조작', description: '입력값과 이벤트를 타입 안전하게 다루기', path: '/input-field', tone: 'lavender' },
-]
-
-const practiceGroups = [
-  {
-    date: '2026.09.11(금)',
-    practices: [
-      { number: '08', icon: '⌂', title: 'Zustand: 필요한 상태만 구독하기', description: '중앙 Store와 셀렉터로 상태 관리하기', path: '/zustand-counter', tone: 'lilac' },
-    ],
-  },
-  {
-    date: '2026.09.01(화)',
-    practices: [
-      { number: '07', icon: '⌁', title: 'TS 마이그레이션 솔루션', description: '타입 규격으로 안전한 데이터 흐름 만들기', path: '/tax-calculator', tone: 'lavender' },
-    ],
-  },
-  {
-    date: '2026.08.31(월)',
-    practices: [
-      { number: '05', icon: '⌘', title: '제네릭 실습: 마법의 거푸집', description: '하나의 목록으로 서로 다른 타입 다루기', path: '/data-list', tone: 'pink' },
-    ],
-  },
-  { date: '2026.08.28(금)', practices: august28Practices },
-]
-
-const dailyQuotes = [
-  '완벽한 시작보다, 오늘의 작은 완료가 더 멀리 데려간다.',
-  '배운 것을 손으로 만들 때, 지식은 내 것이 된다.',
-  '조금씩 쌓인 코드가 결국 나만의 방향을 만든다.',
-  '막히는 순간도 이해가 자라는 과정이다.',
-  '오늘의 연습은 내일의 자신감을 위한 한 줄이다.',
-]
+import { dailyQuotes, practiceGroups } from '../data/practiceData'
+import { Button } from './Button'
+import { Input } from './Input'
+import { Modal } from './Modal'
+import { SelectBox } from './SelectBox'
+import { Textarea } from './Textarea'
 
 function getDailyQuote() {
   const today = new Date()
@@ -46,6 +16,11 @@ function getDailyQuote() {
 
 export function List() {
   const dailyQuote = getDailyQuote()
+  const [isRecordModalOpen, setIsRecordModalOpen] = useState(false)
+  const practiceOptions = practiceGroups.flatMap((group) => group.practices).map((practice) => ({
+    label: practice.title,
+    value: practice.path,
+  }))
 
   return (
     <main className="workspace-shell">
@@ -64,14 +39,14 @@ export function List() {
             <div className="intro-tags" aria-label="현재 학습 주제"><span>React</span><span>TypeScript</span><span>Component</span></div>
           </div>
           <div className="intro-logo" aria-hidden="true">
-            <img src="/logo-3d.png" alt="" />
+            <img src={`${import.meta.env.BASE_URL}logo-3d.png`} alt="" />
           </div>
         </div>
 
         <section className="practice-section" aria-labelledby="practice-title">
           <div className="section-heading">
             <div><p className="eyebrow">LEARNING LOG</p><h2 id="practice-title">실습 목록</h2></div>
-            <span className="practice-count">날짜별 작업 기록</span>
+            <Button onClick={() => setIsRecordModalOpen(true)} variant="outline">+ 기록 등록</Button>
           </div>
           <div className="practice-groups">
             {practiceGroups.map((group) => (
@@ -98,6 +73,26 @@ export function List() {
 
         <footer className="workspace-footer"><strong>Keep building.</strong><span>Idea → Component → Practice</span></footer>
       </section>
+      <Modal
+        footer={
+          <>
+            <Button onClick={() => setIsRecordModalOpen(false)} variant="plain">취소</Button>
+            <Button>등록</Button>
+          </>
+        }
+        isOpen={isRecordModalOpen}
+        onClose={() => setIsRecordModalOpen(false)}
+        title="기록 등록하기"
+      >
+        <form className="record-form">
+          <Input id="record-title" label="타이틀" placeholder="실습 제목을 입력해 주세요" />
+          <Input id="record-subtitle" label="소제목" placeholder="짧은 소제목을 입력해 주세요" />
+          <Input defaultValue={new Date().toISOString().slice(0, 10)} id="record-date" label="날짜" type="date" />
+          <Textarea id="record-description" label="디스크립션" placeholder="실습 내용을 짧게 설명해 주세요" rows={3} />
+          <SelectBox id="record-practice" label="실습 컨텐츠" options={practiceOptions} />
+          <Textarea id="record-summary" label="오늘의 핵심 내용" placeholder="오늘 배운 핵심 내용을 기록해 주세요" rows={5} />
+        </form>
+      </Modal>
     </main>
   )
 }
