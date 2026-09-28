@@ -1,18 +1,22 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { List } from './components/List'
-import { StatusDisplayPage } from './pages/StatusDisplayPage'
-import { UserProfilePage } from './pages/UserProfilePage'
+import ArticlePage from './pages/ArticlePage'
+import { CategoryPage } from './pages/CategoryPage'
 import { CustomButtonPage } from './pages/CustomButtonPage'
-import { InputFieldPage } from './pages/InputFieldPage'
 import { DataListPage } from './pages/DataListPage'
+import { InputFieldPage } from './pages/InputFieldPage'
+import { StatusDisplayPage } from './pages/StatusDisplayPage'
 import { TaxCalculatorPage } from './pages/TaxCalculatorPage'
-import { ZustandCounterPage } from './pages/ZustandCounterPage'
+import { UserProfilePage } from './pages/UserProfilePage'
 import { UtilityTypesPage } from './pages/UtilityTypesPage'
+import { ZustandCounterPage } from './pages/ZustandCounterPage'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<List />} />
+      <Route path="/:category/:slug" element={<ArticlePage />} />
+      <Route path="/category/:categorySlug" element={<CategoryPage />} />
       <Route path="/status-display" element={<StatusDisplayPage />} />
       <Route path="/user-profile" element={<UserProfilePage />} />
       <Route path="/custom-button" element={<CustomButtonPage />} />
@@ -21,9 +25,9 @@ function App() {
       <Route path="/tax-calculator" element={<TaxCalculatorPage />} />
       <Route path="/zustand-counter" element={<ZustandCounterPage />} />
       <Route path="/utility-types" element={<UtilityTypesPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>
   )
 }
 
-export default App
+export default App;
