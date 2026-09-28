@@ -1,6 +1,6 @@
 ---
 title: "Markdown으로 동적 게시글 페이지 만들기"
-description: "Markdown 파일을 React에서 불러오고, URL에 따라 다른 게시글을 렌더링하는 과정을 정리합니다."
+description: "Markdown 파일을 React에서 불러오고, URL에 따라 다른 게시글을 렌더링하는 과정을 정리해."
 date: "2026-09-28"
 tags:
   - React
@@ -184,8 +184,8 @@ map()          → 고른 파일들을 화면 요소로 하나씩 만든다.
   </div>
 ) : (
   <div className="category-empty">
-    <strong>아직 작성된 글이 없어요.</strong>
-    <span>첫 번째 기록을 작성해 보세요.</span>
+    <strong>아직 작성된 글이 없어.</strong>
+    <span>첫 번째 기록을 작성해 봐.</span>
   </div>
 )}
 ```

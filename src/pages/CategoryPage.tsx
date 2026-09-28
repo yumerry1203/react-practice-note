@@ -10,15 +10,26 @@ const posts = import.meta.glob(
   }
 )
 
+function getPostTitle(content: string, fallbackTitle: string) {
+  const frontmatterTitle = content.match(/^title:\s*["']?(.+?)["']?\s*$/m)?.[1]
+  const markdownTitle = content.match(/^#\s+(.+)$/m)?.[1]
+
+  return frontmatterTitle ?? markdownTitle ?? fallbackTitle
+}
+
 export function CategoryPage() {
   const { categorySlug } = useParams()
   const category = getCategory(categorySlug)
-  const categoryPosts = Object.keys(posts).filter((path) => 
-    path.includes(`/content/${categorySlug}/`)
-  )
-  const postCount = categoryPosts.length
-
   if (!category) return <Navigate replace to="/" />
+
+  const categoryPosts = Object.entries(posts)
+    .filter(([path]) => path.includes(`/content/${category.slug}/`))
+    .map(([path, content]) => {
+      const slug = path.split('/').pop()?.replace('.md', '') ?? ''
+
+      return { path, slug, title: getPostTitle(content, slug) }
+    })
+  const postCount = categoryPosts.length
 
   return (
     <main className="dashboard-shell">
@@ -40,23 +51,18 @@ export function CategoryPage() {
         <section aria-labelledby="category-posts-title" className="category-posts">
           <header><h2 id="category-posts-title">전체 글 <span>{ postCount }</span></h2></header>
           {postCount > 0 ? (
-             <div>
-              {categoryPosts.map((path) => {
-                const slug = path.split('/').pop()?.replace('.md', '')
-                
-                return (
-                  <div className="border">
-                    <Link
-                      key={path}
-                      to={`/${category.slug}/${slug}`}
-                      >
-                      {slug}
-                    </Link>
-                  </div>
-                )
-              })}
-            </div>
-          ): (
+            <ul className="post-list">
+              {categoryPosts.map((post) => (
+                <li key={post.path}>
+                  <Link className="post-list-item" to={`/${category.slug}/${post.slug}`}>
+                    <span className="post-list-category">{category.name}</span>
+                    <strong>{post.title}</strong>
+                    <span aria-hidden="true" className="post-list-arrow">→</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
             <div className="category-empty">
               <strong>아직 작성된 글이 없어요.</strong>
               <span>첫 번째 기록을 작성해 보세요.</span>
