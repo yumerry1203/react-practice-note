@@ -1,18 +1,16 @@
 ---
-title: React Error Boundary 공부노트
-description: 렌더링 에러가 앱 전체로 퍼지지 않도록 막는 React 안전장치
-date: 2026-09-28
+title: "React Error Boundary로 에러 안전장치 만들기"
+description: "React Error Boundary로 렌더링 오류를 격리하고 관련 TypeScript 타입을 정리한다."
+date: "2026-09-28"
 tags:
-  - react
-  - error-boundary
-  - typescript
-  - reactnode
-  - class-component
+  - Error Boundary
+  - ReactNode
+  - Class Component
 ---
 
-# React Error Boundary 공부노트
+# React Error Boundary로 에러 안전장치 만들기
 
-> 하위 화면에서 렌더링 에러가 발생해도, 그 영역만 에러 화면으로 바꾸는 안전장치
+Error Boundary는 하위 화면에서 렌더링 오류가 발생해도 해당 영역만 대체 화면으로 바꾸는 React의 안전장치이다.
 
 ## 1. Error Boundary란?
 
@@ -24,12 +22,12 @@ tags:
 </ErrorBoundary>
 ```
 
-- `children`: 평소에 보여줄 정상 화면 (`ProductList`)
+- `children`: 평소에 보여줄 정상 화면
 - `fallback`: 에러가 났을 때 대신 보여줄 화면
 
 ## 2. `ReactNode`
 
-`ReactNode`는 React가 화면에 렌더링할 수 있는 값들을 넓게 묶은 타입이다.
+`ReactNode`는 React가 화면에 렌더링할 수 있는 값들을 넓게 묶은 타입(리액트가 화면에 그릴 수 있는 모든것)
 
 ```tsx
 const title: React.ReactNode = <h1>안녕</h1>;
@@ -39,8 +37,9 @@ const empty: React.ReactNode = null;
 ```
 
 그래서 Error Boundary의 `children`과 `fallback`에 어떤 UI가 들어와도 받을 수 있다.
+-> 뭐가 들어와도 안전하게 처리할 수 있다라는 뜻
 
-## 3. 직접 구현할 때 클래스 컴포넌트가 나오는 이유
+## 3. 클래스 컴포넌트 사용 
 
 보통 React는 함수형 컴포넌트와 Hooks를 사용한다. 하지만 Error Boundary를 직접 만들 때는 클래스 컴포넌트의 특별한 메서드를 사용한다.
 
@@ -59,12 +58,10 @@ class ErrorBoundary extends React.Component<Props, State> {
 - `getDerivedStateFromError`: 에러가 나면 상태를 바꾼다.
 - `componentDidCatch`: 에러 정보를 기록하거나 외부 에러 서비스에 보낼 때 쓴다.
 
-## 4. `hasError` 흐름
+## 4. hasError의 흐름
 
-```text
-처음: hasError = false → children 표시
+처음: hasError = false → children 표시  
 에러 발생 → hasError = true → fallback 표시
-```
 
 ```tsx
 render() {
@@ -87,17 +84,8 @@ try {
 }
 ```
 
-## 6. `Bomb` 컴포넌트
 
-`Bomb`은 Error Boundary가 제대로 작동하는지 확인하려고 일부러 에러를 내는 테스트용 컴포넌트다.
-
-```tsx
-function Bomb() {
-  throw new Error("테스트 에러");
-}
-```
-
-## 핵심 요약
+## 요약정리
 
 - Error Boundary는 하위 화면의 렌더링 에러를 격리하고 fallback UI를 보여준다.
 - `children`은 정상 화면, `fallback`은 에러 화면이다.
@@ -105,5 +93,3 @@ function Bomb() {
 - 직접 구현할 때는 클래스 컴포넌트의 `getDerivedStateFromError`, `componentDidCatch`를 사용한다.
 - 에러가 나면 `hasError`가 `false`에서 `true`가 되고 fallback이 보인다.
 - `unknown` 값은 `instanceof Error`로 좁힌 뒤 안전하게 사용한다.
-
-#react #error-boundary #typescript #reactnode #class-component #frontend

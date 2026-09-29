@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { categories, getCategory } from '../data/categoryData'
+import { SidebarMascot } from '../components/SidebarMascot'
 
 const posts = import.meta.glob(
   '../content/**/*.md',
@@ -10,11 +11,48 @@ const posts = import.meta.glob(
   }
 )
 
-function getPostTitle(content: string, fallbackTitle: string) {
-  const frontmatterTitle = content.match(/^title:\s*["']?(.+?)["']?\s*$/m)?.[1]
-  const markdownTitle = content.match(/^#\s+(.+)$/m)?.[1]
+function removeQuotes(value: string) {
+  return value.trim().replace(/^["']|["']$/g, '')
+}
 
-  return frontmatterTitle ?? markdownTitle ?? fallbackTitle
+function getPostMetadata(content: string, fallbackTitle: string) {
+  const frontmatter = content.match(/^---\s*\n([\s\S]*?)\n---/)?.[1]
+  const markdownTitle = content.match(/^#\s+(.+)$/m)?.[1]
+  const metadata = {
+    title: markdownTitle ?? fallbackTitle,
+    description: '',
+    date: '',
+    tags: [] as string[],
+  }
+
+  if (!frontmatter) return metadata
+
+  let isReadingTags = false
+
+  frontmatter.split('\n').forEach((line) => {
+    const tagItem = line.match(/^\s*-\s+(.+)$/)
+
+    if (isReadingTags && tagItem) {
+      metadata.tags.push(removeQuotes(tagItem[1]))
+      return
+    }
+
+    const field = line.match(/^(title|description|date|tags):\s*(.*)$/)
+    if (!field) return
+
+    const [, key, rawValue] = field
+    const value = removeQuotes(rawValue)
+    isReadingTags = key === 'tags' && value === ''
+
+    if (key === 'title' && value) metadata.title = value
+    if (key === 'description') metadata.description = value
+    if (key === 'date') metadata.date = value
+    if (key === 'tags' && value.startsWith('[') && value.endsWith(']')) {
+      metadata.tags = value.slice(1, -1).split(',').map((tag) => removeQuotes(tag)).filter(Boolean)
+    }
+  })
+
+  return metadata
 }
 
 export function CategoryPage() {
@@ -27,18 +65,25 @@ export function CategoryPage() {
     .map(([path, content]) => {
       const slug = path.split('/').pop()?.replace('.md', '') ?? ''
 
-      return { path, slug, title: getPostTitle(content, slug) }
+      return { path, slug, ...getPostMetadata(content, slug) }
+    })
+    .sort((a, b) => {
+      if (!a.date) return 1
+      if (!b.date) return -1
+
+      return b.date.localeCompare(a.date)
     })
   const postCount = categoryPosts.length
 
   return (
     <main className="dashboard-shell">
       <aside className="dashboard-sidebar">
-        <header className="site-brand"><strong>YUHYEONG.DEV</strong><span>Frontend Learning Note</span></header>
+        <header className="site-brand"><strong>YUHYEONG.DEV</strong><span>Frontend Dev Note</span></header>
         <nav aria-label="학습 카테고리" className="sidebar-navigation">
           <Link className="sidebar-link" to="/"><span>⌂</span>홈</Link>
           {categories.map((item) => <Link className={`sidebar-link ${item.slug === category.slug ? 'is-active' : ''}`} key={item.slug} to={`/category/${item.slug}`}><span>{item.icon}</span>{item.name}</Link>)}
         </nav>
+        <SidebarMascot />
       </aside>
 
       <section className="dashboard-content category-content">
@@ -55,9 +100,19 @@ export function CategoryPage() {
               {categoryPosts.map((post) => (
                 <li key={post.path}>
                   <Link className="post-list-item" to={`/${category.slug}/${post.slug}`}>
-                    <span className="post-list-category">{category.name}</span>
-                    <strong>{post.title}</strong>
-                    <span aria-hidden="true" className="post-list-arrow">→</span>
+                    <div className="post-list-content">
+                      <h3>{post.title}</h3>
+                      {post.description && <p>{post.description}</p>}
+                      {post.tags.length > 0 && (
+                        <div className="post-list-tags">
+                          {post.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                        </div>
+                      )}
+                    </div>
+                    <div className="post-list-meta">
+                      {post.date && <time dateTime={post.date}>{post.date.replaceAll('-', '.')}</time>}
+                      <span aria-hidden="true" className="post-list-arrow">→</span>
+                    </div>
                   </Link>
                 </li>
               ))}

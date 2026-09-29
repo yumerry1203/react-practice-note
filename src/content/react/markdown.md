@@ -1,6 +1,6 @@
 ---
 title: "Markdown으로 동적 게시글 페이지 만들기"
-description: "Markdown 파일을 React에서 불러오고, URL에 따라 다른 게시글을 렌더링하는 과정을 정리해."
+description: "Markdown 파일을 React에서 불러오고 URL에 따라 다른 게시글을 렌더링하는 과정을 정리한다."
 date: "2026-09-28"
 tags:
   - React
@@ -37,19 +37,21 @@ src/
 `react-router-dom`의 동적 라우트를 이용하면 URL마다 페이지를 따로 만들지 않아도 된다.
 
 ```tsx
-<Route path="/javascript/:slug" element={<ArticlePage />} />
+<Route path="/:category/:slug" element={<ArticlePage />} />
 ```
 
-여기서 `:slug`는 URL에 따라 달라지는 값이다.
+여기서 `:category`와 `:slug`는 URL에 따라 달라지는 값이다.
 
 ```text
 /javascript/this
-            ↓
+       ↓         ↓
+category = "javascript"
 slug = "this"
 
-/javascript/scope
-            ↓
-slug = "scope"
+/react/markdown
+   ↓          ↓
+category = "react"
+slug = "markdown"
 ```
 
 `useParams()`를 사용하면 현재 URL의 `slug` 값을 가져올 수 있다. 가져온 `slug`로 같은 이름의 Markdown 파일을 찾아 화면에 렌더링했다.
@@ -84,7 +86,7 @@ URL에 따라 서로 다른 화면을 보여주기 위해 사용했다. `:slug` 
 그래서 Vite가 제공하는 `import.meta.glob()`을 사용해 Markdown 파일을 한 번에 불러오도록 변경했다.
 
 ```tsx
-const posts = import.meta.glob("../content/javascript/*.md", {
+const posts = import.meta.glob("../content/*/*.md", {
   query: "?raw",
   import: "default",
   eager: true,
@@ -184,8 +186,8 @@ map()          → 고른 파일들을 화면 요소로 하나씩 만든다.
   </div>
 ) : (
   <div className="category-empty">
-    <strong>아직 작성된 글이 없어.</strong>
-    <span>첫 번째 기록을 작성해 봐.</span>
+    <strong>아직 작성된 글이 없어요.</strong>
+    <span>첫 번째 기록을 작성해 보세요.</span>
   </div>
 )}
 ```
@@ -202,7 +204,7 @@ map(): 게시글을 하나씩 반복해서 보여준다.
 
 `categoryPosts.length > 0`은 게시글 수가 0보다 큰지 확인한다. 게시글이 하나 이상이면 목록을 렌더링하고, 비어 있으면 empty 화면을 렌더링한다.
 
-## 마무리
+## 정리
 
 이번 작업을 통해 Markdown 파일을 콘텐츠로 관리하고, URL과 파일 이름을 연결해 하나의 공통 페이지에서 동적으로 렌더링하는 방법을 배웠다. 또한 파일 목록을 객체에서 배열로 바꾸고, 필요한 데이터를 고르고, 반복·조건에 따라 화면을 구성하는 흐름도 함께 익혔다.
 
