@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components/Button'
+import { ScrollToTopButton } from '../components/ScrollToTopButton'
 import '../styles/markdown.css'
 
 type ArticleMetadata = {
@@ -63,9 +64,9 @@ function parseArticle(content: string, fallbackTitle: string) {
 
 function ArticlePage() {
   const navigate = useNavigate()
-  const { category, slug } = useParams()
+  const { category, project, slug } = useParams()
   const posts = import.meta.glob<string>(
-    '../content/*/*.md',
+    '../content/**/*.md',
     {
       query: '?raw',
       import: 'default',
@@ -73,7 +74,9 @@ function ArticlePage() {
     },
   )
 
-  const path = `../content/${category}/${slug}.md`
+  const path = project
+    ? `../content/${category}/${project}/${slug}.md`
+    : `../content/${category}/${slug}.md`
   const content = posts[path]
 
   if (!content) return <p>글을 찾을 수 없습니다.</p>
@@ -110,6 +113,7 @@ function ArticlePage() {
           {markdownContent}
         </ReactMarkdown>
       </article>
+      <ScrollToTopButton />
     </main>
   )
 }

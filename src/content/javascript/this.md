@@ -1,7 +1,7 @@
 ---
 title: "JavaScript this와 객체 메서드"
 description: "객체 메서드에서 this가 현재 객체를 참조하는 방식을 정리한다."
-date: "2026-09-29"
+date: "Last Updated · 2026.09.29"
 tags:
   - JavaScript
   - this

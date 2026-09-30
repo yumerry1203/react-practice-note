@@ -1,7 +1,7 @@
 ---
 title: "Object.keys(), Object.values(), Object.entries() 정리"
 description: "객체의 키, 값, 키-값 쌍을 배열로 꺼내는 Object 메서드와 활용법을 정리한다."
-date: "2026-09-28"
+date: "Last Updated · 2026.09.28"
 tags:
   - JavaScript
   - Object

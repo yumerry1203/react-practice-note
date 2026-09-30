@@ -1,9 +1,8 @@
 ---
 title: "인터페이스 확장과 유틸리티 타입"
-description: "표준 HTML 속성을 재사용하고 Omit과 Partial로 기존 타입을 용도에 맞게 가공하는 방법을 정리한다."
+description: "표준 HTML 속성을 재사용하고 Omit과 Partial로 기존 타입을 용도에 맞게 가공하기"
 date: "2026-09-23"
 tags:
-  - TypeScript
   - ComponentPropsWithoutRef
   - Omit
   - Partial
@@ -11,7 +10,7 @@ tags:
 
 # 인터페이스 확장과 유틸리티 타입
 
-표준 버튼 속성을 안전하게 이어받고, 기존 데이터 타입에서 필요한 속성을 제외하거나 선택 사항으로 바꾸는 방법을 실습했다.
+표준 버튼 속성을 안전하게 이어받고, 기존 데이터 타입에서 필요한 속성을 제외하거나 선택 사항으로 바꾸는 방법
 
 ## 1. 표준 버튼 속성 확장하기
 
@@ -23,7 +22,7 @@ interface PrimaryButtonProps
 }
 ```
 
-`ComponentPropsWithoutRef<'button'>`로 버튼의 표준 속성을 재사용하고 프로젝트에 필요한 `variant`와 `isLoading`을 추가한다.
+`ComponentPropsWithoutRef<'button'>`로 버튼의 표준 속성을 재사용하고 프로젝트에 필요한 `variant`와 `isLoading`을 추가
 
 ## 2. Omit으로 속성 제외하기
 

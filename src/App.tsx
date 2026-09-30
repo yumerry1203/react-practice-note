@@ -5,6 +5,7 @@ import { CategoryPage } from './pages/CategoryPage'
 import { CustomButtonPage } from './pages/CustomButtonPage'
 import { DataListPage } from './pages/DataListPage'
 import { InputFieldPage } from './pages/InputFieldPage'
+import { ProjectsPage } from './pages/ProjectsPage'
 import { StatusDisplayPage } from './pages/StatusDisplayPage'
 import { TaxCalculatorPage } from './pages/TaxCalculatorPage'
 import { UserProfilePage } from './pages/UserProfilePage'
@@ -15,6 +16,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<List />} />
+      <Route path="/category/projects" element={<ProjectsPage />} />
+      <Route path="/:category/:project/:slug" element={<ArticlePage />} />
       <Route path="/:category/:slug" element={<ArticlePage />} />
       <Route path="/category/:categorySlug" element={<CategoryPage />} />
       <Route path="/status-display" element={<StatusDisplayPage />} />

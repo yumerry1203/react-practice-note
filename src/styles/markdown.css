@@ -61,6 +61,9 @@
   margin: 0;
   padding: 0;
   border: 0;
+  font-family: 'SEBANG Gothic', 'LINE Seed', sans-serif;
+  font-weight: 400;
+  letter-spacing: normal;
   font-size: clamp(2.15rem, 6vw, 3rem);
 }
 
@@ -82,7 +85,7 @@
 .markdown-meta time {
   flex: 0 0 auto;
   color: #8993a4;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-family: 'LINE Seed', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
   font-size: .78rem;
 }
 
@@ -96,14 +99,20 @@
 }
 
 .markdown-tags li {
-  margin: 0;
-  padding: 5px 10px;
-  border-radius: 999px;
+  display: inline-flex;
+  height: 28px;
+  min-height: 0;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 10px 1px !important;
+  border-radius: 5px;
   background: #edf5fb;
   color: #526d8b;
   font-size: .72rem;
   font-weight: 650;
-  line-height: 1.4;
+  line-height: 1;
 }
 
 .markdown-content h1,
@@ -263,4 +272,32 @@
   .markdown-meta { align-items: flex-start; flex-direction: column; }
   .markdown-content h2 { margin-top: 50px; }
   .markdown-content pre { margin-right: -8px; margin-left: -8px; padding: 18px; }
+}
+
+.markdown-content, .markdown-content * { font-family: 'LINE Seed', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; }
+
+.scroll-to-top-button {
+  display: grid;
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 20px rgb(51 64 82 / 16%);
+  color: #43536b;
+  cursor: pointer;
+  font-family: 'LINE Seed', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.scroll-to-top-button:focus-visible { outline: 3px solid #af96d9; outline-offset: 3px; }
+
+@media (max-width: 640px) {
+  .scroll-to-top-button { right: 18px; bottom: 18px; }
 }

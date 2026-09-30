@@ -1,7 +1,7 @@
 ---
 title: "pop(), replace(), split() 정리"
 description: "split(), pop(), replace()를 조합해 파일 경로에서 slug를 만드는 방법을 정리한다."
-date: "2026-09-28"
+date: "Last Updated · 2026.09.28"
 tags:
   - JavaScript
   - Array

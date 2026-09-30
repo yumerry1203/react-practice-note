@@ -1,7 +1,7 @@
 ---
 title: "자바스크립트의 변수와 스코프"
 description: "let, var, const의 차이와 변수 상수에 대해 정리"
-date: "2026-09-29"
+date: "Last Updated · 2026.09.29"
 tags:
   - Variable
   - Scope

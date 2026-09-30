@@ -28,6 +28,7 @@ function getRecentPosts() {
       return { category, date, path, slug, title: title ?? slug }
     })
     .filter((post): post is NonNullable<typeof post> => post !== null)
+    .filter((post) => !post.date.startsWith('Last Updated ·'))
     .sort((a, b) => {
       if (!a.date) return 1
       if (!b.date) return -1
@@ -55,8 +56,13 @@ export function List() {
 
       <section className="dashboard-content" id="top">
         <section className="dashboard-hero" aria-labelledby="dashboard-title">
-          <div><p>YUHYEONG.DEV</p><h1 id="dashboard-title">Frontend Dev Note</h1><Button className="dashboard-write-button is-hidden" onClick={() => setIsRecordModalOpen(true)}>✎ 글 작성하기 <span aria-hidden="true">→</span></Button></div>
-          <div aria-hidden="true" className="hero-illustration"><div className="hero-desk"><span className="hero-screen" /><span className="hero-cup" /><span className="hero-book" /></div></div>
+          <div>
+            <p>YUHYEONG.DEV</p>
+            <h1 id="dashboard-title">Frontend Dev Note</h1>
+            <p className="dashboard-description">프론트엔드 개발 과정에서 학습한 개념과 실무 경험을 다시 정리하고, 구현 및 트러블슈팅 과정을 기록하는 개인 개발 노트입니다.</p>
+            <Button className="dashboard-write-button is-hidden" onClick={() => setIsRecordModalOpen(true)}>✎ 글 작성하기 <span aria-hidden="true">→</span></Button>
+          </div>
+          <div aria-hidden="true" className="hero-illustration"><img alt="" className="hero-laptop-image" src={`${import.meta.env.BASE_URL}dashboard-laptop.png`} /></div>
         </section>
 
         <section aria-label="카테고리 목록" className="category-grid">

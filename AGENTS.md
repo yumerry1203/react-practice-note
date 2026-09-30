@@ -54,8 +54,16 @@ tags:
 - `title`은 학습 내용을 구체적으로 나타낸다.
 - `description`은 문서 전체를 한 문장으로 요약한다.
 - `date`는 문서를 생성하는 현재 날짜를 `YYYY-MM-DD` 형식으로 작성한다.
+- 사용자가 `Last Updated` 표기를 요청하면 `date`는 `"Last Updated · YYYY.MM.DD"` 형식으로 작성한다.
+- `Last Updated` 표기는 기존 문서를 수정한 날짜를 나타낼 때만 사용한다.
 - `tags`에는 카테고리와 핵심 개념을 포함한다. JavaScript, TypeScript 등 카테고리와 중복된 말은 생성하지 않음
 - 태그는 중복 없이 필요한 것만 작성한다.
+
+## 3-1. Last Updated 문서 노출 규칙
+
+- `Last Updated · YYYY.MM.DD` 형식의 날짜를 가진 문서는 수정 이력이 있는 문서로 처리한다.
+- 홈 대시보드의 최근 글에는 `Last Updated` 문서를 노출하지 않는다.
+- 홈 대시보드의 최근 글은 일반 날짜 형식(`YYYY-MM-DD`) 문서만 대상으로 최신순 4개를 노출한다.
 
 ## 4. 문체
 

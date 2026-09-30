@@ -1,7 +1,7 @@
 ---
 title: "reduce(), filter(), map() 정리"
 description: "배열의 값을 고르고 변환하고 누적하는 filter(), map(), reduce()의 차이를 정리한다."
-date: "2026-09-28"
+date: "Last Updated · 2026.09.28"
 tags:
   - JavaScript
   - Array

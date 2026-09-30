@@ -1,7 +1,7 @@
 ---
 title: "Zustand 셀렉터로 필요한 상태만 구독하기"
 description: "Zustand Store를 만들고 셀렉터로 count와 액션을 나누어 구독하는 카운터 실습을 정리한다."
-date: "2026-09-29"
+date: "2026-09-13"
 tags:
   - Frontend
   - React

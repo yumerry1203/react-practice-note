@@ -1,7 +1,7 @@
 ---
 title: "자바스크립트 (JavaScript) 참고사이트"
 description: "필요한 기능이 브라우저나 엔진에서 지원되는지 확인할 때 참고하는 사이트 정리"
-date: "2026-09-29"
+date: "Last Updated · 2026.09.29"
 tags:
   - MDN
   - Browser Compatibility

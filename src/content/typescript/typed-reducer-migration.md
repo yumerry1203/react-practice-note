@@ -1,17 +1,38 @@
 ---
-title: "TypeScript로 리듀서 데이터 흐름 제한하기"
-description: "ProductState와 ProductAction을 정의해 리듀서와 계산 함수의 데이터 흐름을 타입으로 제한하는 방법을 정리한다."
+title: "TypeScript로 reducer의 상태와 액션 타입 정의하기"
+description: "ProductState와 ProductAction을 정의해 reducer 계산 함수의 데이터 흐름을 타입으로 제한하는 방법을 정리한다."
 date: "2026-09-01"
 tags:
-  - TypeScript
   - useReducer
   - Union Type
   - Migration
 ---
 
-# TypeScript로 리듀서 데이터 흐름 제한하기
+# TypeScript로 reducer의 상태와 액션 타입 정의하기
 
 상품 상태, 리듀서 액션, 계산 함수에 타입을 적용해 잘못된 데이터와 명령을 컴파일 단계에서 확인하도록 구성했다.
+
+## Reducer란?
+
+Reducer는 **현재 상태(state)와 액션(action)을 받아 새로운 상태를 반환하는 함수**이다.
+> "어떤 명령이 들어왔을 때 상태를 어떻게 변경할지 정해놓은 함수"
+
+
+##  기본 구조
+
+```js
+function reducer(state, action) {
+  if (action.type === "ADD") {
+    return state + 1;
+  }
+
+  if (action.type === "REMOVE") {
+    return state - 1;
+  }
+
+  return state;
+}
+```
 
 ## 1. 상태와 액션 타입 정의하기
 
@@ -26,9 +47,9 @@ type ProductAction =
   | { type: 'UPDATE_PRICE'; payload: number }
 ```
 
-`ProductState`는 상품 정보의 형태를 정의한다. `ProductAction`은 리듀서가 받을 수 있는 명령과 값의 타입을 제한한다.
+`ProductState`는 상품 정보의 형태를 정의한다. `ProductAction`은 reducer가 받을 수 있는 명령과 값의 타입을 제한한다.
 
-## 2. 타입이 적용된 리듀서 만들기
+## 2. 타입이 적용된 reducer 만들기
 
 ```ts
 function productReducer(

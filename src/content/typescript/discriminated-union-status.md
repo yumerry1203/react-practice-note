@@ -1,12 +1,10 @@
 ---
-title: "구별된 공용체로 상태별 데이터 표시하기"
-description: "loading, success, error 상태에 따라 사용할 수 있는 데이터를 구별된 공용체로 안전하게 제한하는 방법을 정리한다."
+title: "상태에 따라 서로 다른 데이터 표시하기"
+description: "loading, success, error 상태에 따라 사용할 수 있는 데이터를 안전하게 제한하는 방법"
 date: "2026-09-01"
 tags:
-  - TypeScript
   - Discriminated Union
   - Narrowing
-  - React
 ---
 
 # 구별된 공용체로 상태별 데이터 표시하기
