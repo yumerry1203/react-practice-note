@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { categories, getCategory } from '../data/categoryData'
-import { SidebarMascot } from '../components/SidebarMascot'
+import { getCategory } from '../data/categoryData'
+import { Sidebar } from '../components/Sidebar'
 
 const posts = import.meta.glob(
   '../content/**/*.md',
@@ -77,14 +77,7 @@ export function CategoryPage() {
 
   return (
     <main className="dashboard-shell">
-      <aside className="dashboard-sidebar">
-        <header className="site-brand"><strong>YUHYEONG.DEV</strong><span>Frontend Dev Note</span></header>
-        <nav aria-label="학습 카테고리" className="sidebar-navigation">
-          <Link className="sidebar-link" to="/"><span>⌂</span>홈</Link>
-          {categories.map((item) => <Link className={`sidebar-link ${item.slug === category.slug ? 'is-active' : ''}`} key={item.slug} to={`/category/${item.slug}`}><span>{item.icon}</span>{item.name}</Link>)}
-        </nav>
-        <SidebarMascot />
-      </aside>
+      <Sidebar active={category.slug === 'troubleshooting' ? 'troubleshooting' : category.slug === 'tech-trends' ? 'tech-trends' : 'study-log'} activeCategory={['javascript', 'react', 'typescript', 'frontend'].includes(category.slug) ? category.slug : undefined} />
 
       <section className="dashboard-content category-content">
         <nav aria-label="현재 위치" className="breadcrumb"><Link to="/">홈</Link><span>›</span><strong>{category.name}</strong></nav>

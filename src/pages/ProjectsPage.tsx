@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { categories } from '../data/categoryData'
 import { projectData, type ProjectFolder } from '../data/projectData'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { Modal } from '../components/Modal'
-import { SidebarMascot } from '../components/SidebarMascot'
+import { Sidebar } from '../components/Sidebar'
 
 const projectPosts = import.meta.glob<string>(
   '../content/projects/*/*.md',
@@ -82,14 +81,7 @@ export function ProjectsPage() {
 
   return (
     <main className="dashboard-shell">
-      <aside className="dashboard-sidebar">
-        <header className="site-brand"><strong>YUHYEONG.DEV</strong><span>Frontend Dev Note</span></header>
-        <nav aria-label="학습 카테고리" className="sidebar-navigation">
-          <Link className="sidebar-link" to="/"><span>⌂</span>홈</Link>
-          {categories.map((category) => <Link className={`sidebar-link ${category.slug === 'projects' ? 'is-active' : ''}`} key={category.slug} to={`/category/${category.slug}`}><span>{category.icon}</span>{category.name}</Link>)}
-        </nav>
-        <SidebarMascot />
-      </aside>
+      <Sidebar active="projects" />
 
       <section className="dashboard-content projects-content">
         <nav aria-label="현재 위치" className="breadcrumb"><Link to="/">홈</Link><span>›</span><strong>Projects</strong></nav>

@@ -7,6 +7,7 @@ import { DataListPage } from './pages/DataListPage'
 import { InputFieldPage } from './pages/InputFieldPage'
 import { ProjectsPage } from './pages/ProjectsPage'
 import { StatusDisplayPage } from './pages/StatusDisplayPage'
+import { StudyLogPage } from './pages/StudyLogPage'
 import { TaxCalculatorPage } from './pages/TaxCalculatorPage'
 import { UserProfilePage } from './pages/UserProfilePage'
 import { UtilityTypesPage } from './pages/UtilityTypesPage'
@@ -16,6 +17,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<List />} />
+      <Route path="/study-log" element={<StudyLogPage />} />
       <Route path="/category/projects" element={<ProjectsPage />} />
       <Route path="/:category/:project/:slug" element={<ArticlePage />} />
       <Route path="/:category/:slug" element={<ArticlePage />} />
