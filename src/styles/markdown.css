@@ -276,6 +276,13 @@
 
 .markdown-content, .markdown-content * { font-family: 'LINE Seed', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; }
 
+/* 긴 학습 노트에서 제목이 본문보다 과하게 커 보이지 않도록 계층별 크기를 조정한다. */
+.markdown-content .markdown-header h1 { font-size: clamp(1.95rem, 5vw, 2.6rem); }
+.markdown-content h1 { font-size: clamp(1.95rem, 5vw, 2.6rem); }
+.markdown-content h2 { font-size: clamp(1.4rem, 3.5vw, 1.7rem); }
+.markdown-content h3 { font-size: 1.18rem; }
+.markdown-content h4 { font-size: 1rem; }
+
 .scroll-to-top-button {
   display: grid;
   position: fixed;

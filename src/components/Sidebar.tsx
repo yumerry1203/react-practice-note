@@ -7,19 +7,26 @@ type SidebarProps = {
   activeCategory?: string
 }
 
+const iconPath = (name: string) => `${import.meta.env.BASE_URL}icons/${name}.svg`
+
 export function Sidebar({ active, activeCategory }: SidebarProps) {
   const isStudyLogActive = active === 'study-log' || Boolean(activeCategory)
 
   return (
     <aside className="dashboard-sidebar">
       <header className="site-brand">
-        <strong>YUHYEONG.DEV</strong>
-        <span>Frontend Dev Note</span>
+        <Link aria-label="NAYUHYEONG 홈으로 이동" className="site-brand-link" to="/">
+          <span aria-hidden="true" className="site-brand-mark">N</span>
+          <span className="site-brand-copy">
+            <strong>NAYUHYEONG</strong>
+            <span>Frontend Dev Note</span>
+          </span>
+        </Link>
       </header>
       <nav aria-label="메인 메뉴" className="sidebar-navigation">
-        <Link className={`sidebar-link ${active === 'home' ? 'is-active' : ''}`} to="/"><span>⌂</span>홈</Link>
+        <Link className={`sidebar-link ${active === 'home' ? 'is-active' : ''}`} to="/"><img alt="" className="sidebar-menu-icon sidebar-home-icon" src={`${import.meta.env.BASE_URL}icons/home.png`} />홈</Link>
         <div className={`sidebar-study-group ${isStudyLogActive ? 'is-active' : ''}`}>
-          <Link className={`sidebar-link sidebar-study-link ${isStudyLogActive ? 'is-active' : ''}`} to="/study-log"><span>▤</span>Study Log</Link>
+          <Link className={`sidebar-link sidebar-study-link ${isStudyLogActive ? 'is-active' : ''}`} to="/study-log"><img alt="" className="sidebar-menu-icon" src={iconPath('study-log')} />Study Log</Link>
           <div className="sidebar-study-depth" aria-label="Study Log 카테고리">
             {studyCategories.map((category) => (
               <Link
@@ -33,9 +40,9 @@ export function Sidebar({ active, activeCategory }: SidebarProps) {
             ))}
           </div>
         </div>
-        <Link className={`sidebar-link ${active === 'tech-trends' ? 'is-active' : ''}`} to="/category/tech-trends"><span>⌁</span>Tech Trends</Link>
-        <Link className={`sidebar-link ${active === 'projects' ? 'is-active' : ''}`} to="/category/projects"><span>□</span>Projects</Link>
-        <Link className={`sidebar-link ${active === 'troubleshooting' ? 'is-active' : ''}`} to="/category/troubleshooting"><span>⌕</span>Troubleshooting</Link>
+        <Link className={`sidebar-link ${active === 'tech-trends' ? 'is-active' : ''}`} to="/category/tech-trends"><img alt="" className="sidebar-menu-icon" src={iconPath('tech-trends')} />Tech Trends</Link>
+        <Link className={`sidebar-link ${active === 'projects' ? 'is-active' : ''}`} to="/category/projects"><img alt="" className="sidebar-menu-icon" src={iconPath('file')} />Projects</Link>
+        <Link className={`sidebar-link ${active === 'troubleshooting' ? 'is-active' : ''}`} to="/category/troubleshooting"><img alt="" className="sidebar-menu-icon" src={iconPath('troubleshooting')} />Troubleshooting</Link>
       </nav>
       <SidebarMascot />
     </aside>

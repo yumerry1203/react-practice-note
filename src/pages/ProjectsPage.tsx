@@ -6,6 +6,8 @@ import { Input } from '../components/Input'
 import { Modal } from '../components/Modal'
 import { Sidebar } from '../components/Sidebar'
 
+const fileIconPath = `${import.meta.env.BASE_URL}icons/file.svg`
+
 const projectPosts = import.meta.glob<string>(
   '../content/projects/*/*.md',
   {
@@ -85,12 +87,14 @@ export function ProjectsPage() {
 
       <section className="dashboard-content projects-content">
         <nav aria-label="현재 위치" className="breadcrumb"><Link to="/">홈</Link><span>›</span><strong>Projects</strong></nav>
-        <header className="projects-header">
+        <header className="category-hero projects projects-header">
+          <span className="category-hero-icon"><img alt="" src={fileIconPath} /></span>
           <div>
-            <h1><span aria-hidden="true" className="projects-title-mark">✦</span>Projects</h1>
+            <h1>Projects</h1>
             <p>개인 프로젝트에 대한 개발 기록</p>
+            <Button className="create-project-button is-hidden" onClick={() => setIsProjectModalOpen(true)}>+ 프로젝트 만들기</Button>
           </div>
-          <Button className="create-project-button" onClick={() => setIsProjectModalOpen(true)}>+ 프로젝트 만들기</Button>
+          <img alt="" aria-hidden="true" className="category-hero-mark projects-hero-mark" src={fileIconPath} />
         </header>
 
         <section aria-labelledby="project-tree-title" className="project-tree-panel">
@@ -111,7 +115,7 @@ export function ProjectsPage() {
                     {isExpanded && project.files.length > 0 && (
                       <div className="project-folder-contents">
                         <ul className="project-file-list">
-                          {project.files.map((file) => <li key={file.id}><Link to={`/projects/${project.id}/${file.slug}`}><span aria-hidden="true" className="project-file-corner" /><strong>{file.name}</strong>{file.date && <time dateTime={file.date}>{file.date.replaceAll('-', '.')}</time>}</Link></li>)}
+                          {project.files.map((file) => <li key={file.id}><Link to={`/projects/${project.id}/${file.slug}`}><img alt="" className="project-file-icon" src={fileIconPath} /><strong>{file.name}</strong>{file.date && <time dateTime={file.date}>{file.date.replaceAll('-', '.')}</time>}</Link></li>)}
                         </ul>
                       </div>
                     )}

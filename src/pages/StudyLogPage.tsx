@@ -57,9 +57,13 @@ export function StudyLogPage() {
       <section className="dashboard-content category-content study-log-content">
         <nav aria-label="현재 위치" className="breadcrumb"><Link to="/">홈</Link><span>›</span><strong>Study Log</strong></nav>
         <section className="study-log-hero" aria-labelledby="study-log-title">
-          <p>STUDY LOG</p>
-          <h1 id="study-log-title">Study Log</h1>
-          <span>{studyPosts.length}개의 학습 기록</span>
+          <img alt="" className="study-log-hero-icon" src={`${import.meta.env.BASE_URL}icons/study-log.svg`} />
+          <div>
+            <p>STUDY LOG</p>
+            <h1 id="study-log-title">Study Log</h1>
+            <span>{studyPosts.length}개의 학습 기록</span>
+          </div>
+          <img alt="" aria-hidden="true" className="study-log-hero-mark" src={`${import.meta.env.BASE_URL}icons/study-log.svg`} />
         </section>
         <section aria-labelledby="study-log-posts-title" className="category-posts">
           <header><h2 id="study-log-posts-title">전체 글 <span>{studyPosts.length}</span></h2></header>

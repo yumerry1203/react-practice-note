@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Sidebar } from './Sidebar'
 
+const iconPath = (name: string) => `${import.meta.env.BASE_URL}icons/${name}.svg`
+
 const posts = import.meta.glob<string>('../content/**/*.md', {
   query: '?raw',
   import: 'default',
@@ -35,10 +37,10 @@ export function List() {
   const getPostCount = (categorySlug: string) => Object.keys(posts).filter((path) => path.includes(`/content/${categorySlug}/`)).length
   const recentPosts = getRecentPosts()
   const dashboardItems = [
-    { name: 'Study Log', icon: '▤', tone: 'study-log', to: '/study-log', count: ['javascript', 'react', 'typescript', 'frontend'].reduce((total, slug) => total + getPostCount(slug), 0) },
-    { name: 'Tech Trends', icon: '⌁', tone: 'tech-trends', to: '/category/tech-trends', count: 0 },
-    { name: 'Projects', icon: '□', tone: 'projects', to: '/category/projects', count: getPostCount('projects') },
-    { name: 'Troubleshooting', icon: '⌕', tone: 'troubleshooting', to: '/category/troubleshooting', count: getPostCount('troubleshooting') },
+    { name: 'Study Log', icon: 'study-log', tone: 'study-log', to: '/study-log', count: ['javascript', 'react', 'typescript', 'frontend'].reduce((total, slug) => total + getPostCount(slug), 0) },
+    { name: 'Tech Trends', icon: 'tech-trends', tone: 'tech-trends', to: '/category/tech-trends', count: getPostCount('tech-trends') },
+    { name: 'Projects', icon: 'file', tone: 'projects', to: '/category/projects', count: getPostCount('projects') },
+    { name: 'Troubleshooting', icon: 'troubleshooting', tone: 'troubleshooting', to: '/category/troubleshooting', count: getPostCount('troubleshooting') },
   ]
 
   return (
@@ -48,7 +50,7 @@ export function List() {
       <section className="dashboard-content" id="top">
         <section className="dashboard-hero" aria-labelledby="dashboard-title">
           <div>
-            <p>YUHYEONG.DEV</p>
+            <p>NAYUHYEONG</p>
             <h1 id="dashboard-title">Frontend Dev Note</h1>
             <p className="dashboard-description">프론트엔드 개발 과정에서 학습한 개념과 실무 경험을 다시 정리하고, 구현 및 트러블슈팅 과정을 기록하는 개인 개발 노트입니다.</p>
           </div>
@@ -57,12 +59,13 @@ export function List() {
 
         <section aria-label="카테고리 목록" className="category-grid">
           {dashboardItems.map((item) => {
-            return <Link aria-label={`${item.name} 보기`} className={`category-card ${item.tone}`} key={item.name} to={item.to}><span className="category-icon">{item.icon}</span><h2>{item.name}</h2><p>{item.count}개의 글</p><span aria-hidden="true" className="category-arrow">→</span></Link>
+            const hasCustomIcon = ['study-log', 'tech-trends', 'file', 'troubleshooting'].includes(item.icon)
+            return <Link aria-label={`${item.name} 보기`} className={`category-card ${item.tone}`} key={item.name} to={item.to}><span className="category-icon">{hasCustomIcon ? <img alt="" src={iconPath(item.icon)} /> : item.icon}</span><h2>{item.name}</h2><p>{item.count}개의 글</p><span aria-hidden="true" className="category-arrow">→</span></Link>
           })}
         </section>
 
         <section aria-labelledby="recent-posts-title" className="recent-posts">
-          <header><span aria-hidden="true">▤</span><h2 id="recent-posts-title">최근 글</h2></header>
+          <header><img alt="" className="recent-post-icon" src={iconPath('post')} /><h2 id="recent-posts-title">최근 작성한 글</h2></header>
           {recentPosts.length > 0 ? (
             <ul className="recent-post-list">
               {recentPosts.map((post) => (

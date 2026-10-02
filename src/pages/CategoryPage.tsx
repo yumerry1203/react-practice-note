@@ -2,6 +2,11 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { getCategory } from '../data/categoryData'
 import { Sidebar } from '../components/Sidebar'
 
+const categoryIconAssets: Record<string, string> = {
+  'tech-trends': 'tech-trends',
+  troubleshooting: 'troubleshooting',
+}
+
 const posts = import.meta.glob(
   '../content/**/*.md',
   {
@@ -74,6 +79,7 @@ export function CategoryPage() {
       return b.date.localeCompare(a.date)
     })
   const postCount = categoryPosts.length
+  const customIcon = categoryIconAssets[category.slug]
 
   return (
     <main className="dashboard-shell">
@@ -82,9 +88,9 @@ export function CategoryPage() {
       <section className="dashboard-content category-content">
         <nav aria-label="현재 위치" className="breadcrumb"><Link to="/">홈</Link><span>›</span><strong>{category.name}</strong></nav>
         <section className={`category-hero ${category.tone}`} aria-labelledby="category-title">
-          <span className="category-hero-icon">{category.icon}</span>
+          <span className="category-hero-icon">{customIcon ? <img alt="" src={`${import.meta.env.BASE_URL}icons/${customIcon}.svg`} /> : category.icon}</span>
           <div><h1 id="category-title">{category.name}</h1><p>{ postCount}개의 글</p></div>
-          <span aria-hidden="true" className="category-hero-mark">{category.icon}</span>
+          <span aria-hidden="true" className="category-hero-mark">{customIcon ? <img alt="" src={`${import.meta.env.BASE_URL}icons/${customIcon}.svg`} /> : category.icon}</span>
         </section>
         <section aria-labelledby="category-posts-title" className="category-posts">
           <header><h2 id="category-posts-title">전체 글 <span>{ postCount }</span></h2></header>
