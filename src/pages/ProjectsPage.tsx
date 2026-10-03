@@ -115,7 +115,7 @@ export function ProjectsPage() {
                     {isExpanded && project.files.length > 0 && (
                       <div className="project-folder-contents">
                         <ul className="project-file-list">
-                          {project.files.map((file) => <li key={file.id}><Link to={`/projects/${project.id}/${file.slug}`}><img alt="" className="project-file-icon" src={fileIconPath} /><strong>{file.name}</strong>{file.date && <time dateTime={file.date}>{file.date.replaceAll('-', '.')}</time>}</Link></li>)}
+                          {project.files.map((file) => <li key={file.id}><Link to={`/projects/${project.id}/${file.slug}`}><span aria-hidden="true" className="project-file-corner" /><strong>{file.name}</strong>{file.date && <time dateTime={file.date}>{file.date.replaceAll('-', '.')}</time>}</Link></li>)}
                         </ul>
                       </div>
                     )}
