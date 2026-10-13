@@ -45,7 +45,7 @@ function getPostInfo(content: string, fallbackName: string) {
 
 export function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectFolder[]>(projectData)
-  const [expandedProjectIds, setExpandedProjectIds] = useState<string[]>([])
+  const [expandedProjectIds, setExpandedProjectIds] = useState<string[]>(() => projectData.map((project) => project.id))
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false)
   const [projectName, setProjectName] = useState('')
 

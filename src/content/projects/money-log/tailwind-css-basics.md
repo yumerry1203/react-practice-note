@@ -1,5 +1,5 @@
 ---
-title: "MoneyLog에 Tailwind CSS와 디자인 토큰 적용하기"
+title: "2-1. MoneyLog에 Tailwind CSS와 디자인 토큰 적용하기"
 description: "MoneyLog의 수입·지출 상태와 화면 요소를 일관되게 표현하기 위한 Tailwind CSS 색상 토큰 적용 기준을 정했다.."
 date: "2026-10-03"
 tags:
