@@ -1,6 +1,6 @@
 ---
-title: "Zustand Persist로 새로고침 이후 상태 유지하기"
-description: "수동 localStorage 관리의 한계와 Zustand persist 미들웨어로 전역 상태를 저장·복구하는 방법을 정리했다."
+title: "Zustand의 Persist 미들웨어로 새로고침 이후 상태 유지하기"
+description: "수동 localStorage 관리의 한계와 Zustand persist 미들웨어로 전역 상태를 저장,복구하는 방법"
 date: "2026-10-13"
 tags:
   - Zustand

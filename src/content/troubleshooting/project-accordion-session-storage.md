@@ -1,12 +1,11 @@
 ---
 title: "(Money-Log)아코디언 상태를 sessionStorage로 유지하기"
-description: "프로젝트 폴더의 열림/닫힘 상태가 페이지 이동 뒤 초기화되는 문제를 sessionStorage로 해결gkrl"
+description: "프로젝트 폴더의 열림/닫힘 상태가 페이지 이동 뒤 초기화되는 문제를 sessionStorage로 해결하기"
 date: "2026-10-13"
 tags:
   - React
   - sessionStorage
   - useState
-  - Troubleshooting
 ---
 
 # 프로젝트 아코디언 상태를 sessionStorage로 유지하기

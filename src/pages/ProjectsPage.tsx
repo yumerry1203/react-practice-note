@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projectData, type ProjectFolder } from '../data/projectData'
 import { Button } from '../components/Button'
@@ -7,6 +7,7 @@ import { Modal } from '../components/Modal'
 import { Sidebar } from '../components/Sidebar'
 
 const fileIconPath = `${import.meta.env.BASE_URL}icons/file.svg`
+const expandedProjectsStorageKey = 'expanded-project-ids'
 
 const projectPosts = import.meta.glob<string>(
   '../content/projects/*/*.md',
@@ -45,9 +46,28 @@ function getPostInfo(content: string, fallbackName: string) {
 
 export function ProjectsPage() {
   const [projects, setProjects] = useState<ProjectFolder[]>(projectData)
-  const [expandedProjectIds, setExpandedProjectIds] = useState<string[]>(() => projectData.map((project) => project.id))
+  const [expandedProjectIds, setExpandedProjectIds] = useState<string[]>(() => {
+    const initialProjectIds = projectData.map((project) => project.id)
+    const savedProjectIds = sessionStorage.getItem(expandedProjectsStorageKey)
+
+    if (!savedProjectIds) return initialProjectIds
+
+    try {
+      const parsedProjectIds: unknown = JSON.parse(savedProjectIds)
+
+      return Array.isArray(parsedProjectIds)
+        ? parsedProjectIds.filter((id): id is string => typeof id === 'string')
+        : initialProjectIds
+    } catch {
+      return initialProjectIds
+    }
+  })
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false)
   const [projectName, setProjectName] = useState('')
+
+  useEffect(() => {
+    sessionStorage.setItem(expandedProjectsStorageKey, JSON.stringify(expandedProjectIds))
+  }, [expandedProjectIds])
 
   const projectsWithFiles = projects.map((project) => ({
     ...project,
