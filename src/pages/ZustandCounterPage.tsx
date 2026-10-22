@@ -10,7 +10,7 @@ export function ZustandCounterPage() {
     <PracticeLayout title="Zustand: 필요한 상태만 구독하기">
       <p className="practice-memo">Context API의 Provider 구조 대신, 컴포넌트 밖의 중앙 Store에서 필요한 상태 조각만 선택해 가져오는 Zustand 카운터를 실습했습니다.</p>
       <section className="zustand-demo" aria-labelledby="zustand-demo-title">
-        <p className="data-list-label">ZUSTAND STORE · SELECTOR</p>
+        <p className="data-list-label">ZUSTAND STORE & SELECTOR</p>
         <h2 id="zustand-demo-title">중앙 창고 카운터</h2>
         <p className="selector-note"><code>state =&gt; state.count</code> 셀렉터로 count만 구독 중입니다.</p>
         <output className="counter-value" aria-live="polite">{count}</output>

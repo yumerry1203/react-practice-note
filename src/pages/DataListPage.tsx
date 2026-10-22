@@ -13,7 +13,7 @@ export function DataListPage() {
       <p className="practice-memo">extends 제약으로 id를 보장한 하나의 DataList 컴포넌트에 User와 Product 타입을 각각 주입해 보았습니다.</p>
       <div className="data-list-practice">
         <section className="data-list-section">
-          <p className="data-list-label">USER TYPE · {userList.id}</p>
+          <p className="data-list-label">USER TYPE & {userList.id}</p>
           <h2>👥 사용자 목록</h2>
           <DataList<User>
             items={userList.data}
@@ -21,7 +21,7 @@ export function DataListPage() {
           />
         </section>
         <section className="data-list-section">
-          <p className="data-list-label">PRODUCT TYPE · {productList.id}</p>
+          <p className="data-list-label">PRODUCT TYPE & {productList.id}</p>
           <h2>📦 상품 목록</h2>
           <DataList<Product>
             items={productList.data}

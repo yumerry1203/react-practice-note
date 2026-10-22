@@ -101,13 +101,13 @@ function App() {
 | `primary` | 서비스 대표 색상 | 주요 버튼, 활성 메뉴 | `bg-primary`, `text-primary` |
 | `primary-hover` | 대표 색상의 hover 상태 | 주요 버튼 hover | `hover:bg-primary-hover` |
 | `secondary` | 보조 색상 | 보조 버튼, 아이콘 | `bg-secondary` |
-| `success` | 성공·긍정 상태 | 완료 알림, 수입 | `text-success` |
-| `danger` | 위험·오류 상태 | 삭제, 오류, 지출 | `text-danger` |
+| `success` | 성공 및 긍정 상태 | 완료 알림, 수입 | `text-success` |
+| `danger` | 위험 및 오류 상태 | 삭제, 오류, 지출 | `text-danger` |
 | `background` | 페이지 기본 배경 | 앱 전체 배경 | `bg-background` |
 | `surface` | 콘텐츠 표면 배경 | 카드, 모달, 테이블 | `bg-surface` |
 | `text` | 기본 글자색 | 제목, 본문 | `text-text` |
 | `text-muted` | 보조 글자색 | 설명, 날짜, 안내 문구 | `text-text-muted` |
-| `border` | 테두리·구분선 | 입력창, 카드, 테이블 | `border-border` |
+| `border` | 테두리 및 구분선 | 입력창, 카드, 테이블 | `border-border` |
 
 ## 7. 크기 사용 원칙
 

@@ -6,10 +6,10 @@ import { PracticeLayout } from '../components/PracticeLayout'
 export function UtilityTypesPage() {
   return (
     <PracticeLayout title="인터페이스 확장과 유틸리티 타입">
-      <p className="practice-memo">표준 HTML 속성을 안전하게 이어받고, 기존 타입을 필요한 용도에 맞게 확장·가공하는 방법을 실습했습니다.</p>
+      <p className="practice-memo">표준 HTML 속성을 안전하게 이어받고, 기존 타입을 필요한 용도에 맞게 확장하고 가공하는 방법을 실습했습니다.</p>
       <div className="utility-practice">
         <section className="utility-section" aria-labelledby="utility-button-title">
-          <p className="data-list-label">COMPONENT PROPS · EXTENDS</p>
+          <p className="data-list-label">COMPONENT PROPS & EXTENDS</p>
           <h2 id="utility-button-title">표준 속성을 확장한 버튼</h2>
           <p><code>ComponentPropsWithoutRef&lt;'button'&gt;</code>로 기본 버튼 속성을 그대로 사용할 수 있어요.</p>
           <div className="utility-button-row">
@@ -18,12 +18,12 @@ export function UtilityTypesPage() {
           </div>
         </section>
         <section className="utility-section" aria-labelledby="utility-product-title">
-          <p className="data-list-label">OMIT · DATA SECURITY</p>
+          <p className="data-list-label">OMIT & DATA SECURITY</p>
           <h2 id="utility-product-title">데이터 정밀 가공</h2>
           <ProductDetail product={{ id: 'A101', name: '고급 리액트 가이드', price: 45000 }} />
         </section>
         <section className="utility-section" aria-labelledby="utility-profile-title">
-          <p className="data-list-label">PARTIAL · PATCH PATTERN</p>
+          <p className="data-list-label">PARTIAL & PATCH PATTERN</p>
           <h2 id="utility-profile-title">유연한 부분 수정</h2>
           <ProfileEditor />
         </section>

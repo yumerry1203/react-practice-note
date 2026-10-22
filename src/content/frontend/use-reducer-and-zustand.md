@@ -1,7 +1,7 @@
 ---
 title: "상태 관리 함수 useReducer의 한계와 zustand를 사용하는 이유"
 description: "리액트 내장 훅 useReducer의 흐름과 보일러플레이트 발생, 그리고 Zustand를 사용하여 편리하고 안전하게 관리하기"
-date: "Last Updated · 2026-10-13"
+date: "Last Updated 2026-10-13"
 tags:
   - useReducer
   - Zustand

@@ -39,5 +39,5 @@ Input, Textarea, Select Box, Datepicker - 기본, 포커스, 입력됨, 오류, 
 
 Checkbox와 Radio Box는 기본, 선택됨, 비활성 상태를 제공한다.
 - Checkbox는 반복 등록처럼 여러 선택이 가능한 항목에 사용한다.
-- Radio Box는 수입·지출처럼 하나만 선택해야 하는 항목에 사용한다.
+- Radio Box는 수입/지출처럼 하나만 선택해야 하는 항목에 사용한다.
 - 선택 상태는 Primary 색상으로 명확하게 구분한다.

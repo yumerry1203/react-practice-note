@@ -1,7 +1,7 @@
 ---
 title: "JavaScript 연산자와 조건 처리"
-description: "산술·비교·논리 연산자와 if, 삼항 연산자, nullish 병합 연산자의 핵심 동작"
-date: "Last Updated · 2026.10.06"
+description: "산술, 비교, 논리 연산자와 if, 삼항 연산자, nullish 병합 연산자의 핵심 동작"
+date: "Last Updated 2026.10.06"
 tags:
   - Operator
   - Condition
@@ -42,8 +42,8 @@ const remainder = amount % 4;
 | --- | --- |
 | `>` , `<` | 크다, 작다 |
 | `>=`, `<=` | 크거나 같다, 작거나 같다 |
-| `==`, `!=` | 타입 변환을 허용하는 동등·부등 비교 |
-| `===`, `!==` | 타입까지 확인하는 일치·불일치 비교 |
+| `==`, `!=` | 타입 변환을 허용하는 동등/부등 비교 |
+| `===`, `!==` | 타입까지 확인하는 일치/불일치 비교 |
 
 ```js
 const score = 85;

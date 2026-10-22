@@ -12,7 +12,7 @@ export function TaxCalculatorPage() {
     <PracticeLayout title="TS 마이그레이션 솔루션">
       <p className="practice-memo">interface와 type을 활용해 데이터와 명령의 표준 규격을 정의</p>
       <section className="tax-practice" aria-labelledby="product-center-title">
-        <p className="data-list-label">PRODUCT STATE · TYPESCRIPT</p>
+        <p className="data-list-label">PRODUCT STATE & TYPESCRIPT</p>
         <h2 id="product-center-title">📦 상품 정보 센터</h2>
         <dl>
           <div><dt>상품 식별 번호</dt><dd>{state.productId}</dd></div>

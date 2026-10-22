@@ -1,7 +1,7 @@
 ---
 title: "JavaScript에서의 객체"
 description: "객체의 메서드와 this, 참조 복사, 옵셔널 체이닝의 동작 방식"
-date: "Last Updated · 2026.09.30"
+date: "Last Updated 2026.09.30"
 tags:
   - Object
   - Method

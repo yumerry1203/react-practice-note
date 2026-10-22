@@ -1,5 +1,5 @@
 ---
-title: "27년 10월 첫째 주 프론트엔드 이슈"
+title: "2026년 10월 첫째 주 프론트엔드 이슈"
 description: "Next.js 보안 업데이트, CSS Modules 전환, 브라우저를 활용하는 AI Agent와 Context의 중요성"
 date: "2026-10-01"
 tags:
@@ -9,7 +9,7 @@ tags:
   - Context
 ---
 
-# 27년 10월 첫째 주 프론트엔드 이슈
+# 2026년 10월 첫째 주 프론트엔드 이슈
 
 최근 프론트엔드와 AI 개발 도구에서 눈에 띈 보안, 스타일링, 브라우저 검증, 프로젝트 Context 관련 내용을 정리
 
@@ -55,7 +55,7 @@ Codex에서도 Browser와 Developer mode를 활용해 비슷한 방식으로 프
 
 - Next.js는 아직 실무에서 사용해 본 적이 없다. 우선 React에 대한 기본기와 실무적인 활용을 익힌 뒤, 다음 단계로 Next.js를 다뤄봐야겠다.
 
-- AI가 DevTools까지 활용해 프로젝트를 확인할 수 있다는 내용을 보고, GitHub에 올려둔 포트폴리오를 Codex에게 직접 점검해달라고 요청해봤다. Codex Browser와 Developer mode를 사용해 확인해봤는데, 실제 사용자 입장에서 고쳐야 할 부분과 UI·UX 중심의 개선안을 주로 제안해줬다. 사이드 프로젝트가 완성되면 Playwright와 Chrome DevTools MCP를 직접 설치해서 **브라우저 테스트 → 오류 확인 → 코드 수정 → 재검증** 테스트를 해보고싶다.
+- AI가 DevTools까지 활용해 프로젝트를 확인할 수 있다는 내용을 보고, GitHub에 올려둔 포트폴리오를 Codex에게 직접 점검해달라고 요청해봤다. Codex Browser와 Developer mode를 사용해 확인해봤는데, 실제 사용자 입장에서 고쳐야 할 부분과 UI/UX 중심의 개선안을 주로 제안해줬다. 사이드 프로젝트가 완성되면 Playwright와 Chrome DevTools MCP를 직접 설치해서 **브라우저 테스트 → 오류 확인 → 코드 수정 → 재검증** 테스트를 해보고싶다.
 
 - GitHub가 스타일링 방식을 CSS Modules 중심으로 전환했다는 내용도 흥미로웠다. 최근 프로젝트에서 Tailwind CSS를 적극적으로 사용하고 있는데, 런타임 비용을 줄이고 CSS를 활용하는 방향과 어느 정도 맞닿아 있다고 생각한다. 
 

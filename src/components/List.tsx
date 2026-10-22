@@ -23,7 +23,7 @@ function getRecentPosts() {
       return { category, date, path, slug, title: title ?? slug }
     })
     .filter((post): post is NonNullable<typeof post> => post !== null)
-    .filter((post) => !post.date.startsWith('Last Updated ·'))
+    .filter((post) => !post.date.startsWith('Last Updated '))
     .sort((a, b) => {
       if (!a.date) return 1
       if (!b.date) return -1

@@ -1,7 +1,7 @@
 ---
 title: "JavaScript 반복문: while과 for"
 description: "while, do...while, for 반복문의 동작 방식과 break, continue, 레이블을 이용한 흐름 제어를 정리했다."
-date: "Last Updated · 2026.10.13"
+date: "Last Updated 2026.10.13"
 tags:
   - JavaScript
   - Loop
